@@ -3,6 +3,7 @@ package com.example.data_op;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -101,7 +102,14 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),a+" "+b+" "+c+" "+d,Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(a)||TextUtils.isEmpty(b)||TextUtils.isEmpty(c)||TextUtils.isEmpty(d))
+                {
+                    Toast.makeText(MainActivity.this, "INVALID", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),a+" "+b+" "+c+" "+d,Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
