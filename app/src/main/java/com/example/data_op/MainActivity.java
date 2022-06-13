@@ -32,12 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         button=(Button)findViewById(R.id.start);
-//        setContentView(R.layout.activity_main);
-//        ImageView imageView=(ImageView)findViewById(R.id.imageView1);
-////        String format = "hh:mm:ss aa";
-////        SimpleDateFormat sdf =new SimpleDateFormat(format, Locale.US);
-////        String callstarttime = sdf.format(Calendar.getInstance().getTime());
-////        Toast.makeText(getApplicationContext(), callstarttime, Toast.LENGTH_SHORT).show();
+
 ////        findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
 ////            private String path_id;
 ////
