@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        button=(Button)findViewById(R.id.submit);
+        button=(Button)findViewById(R.id.start);
 //        setContentView(R.layout.activity_main);
 //        ImageView imageView=(ImageView)findViewById(R.id.imageView1);
 ////        String format = "hh:mm:ss aa";
@@ -110,7 +110,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),a+" "+b+" "+c+" "+d,Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getApplicationContext(),SecondActivity.class);
+                    startActivity(intent);
+//                    Toast.makeText(getApplicationContext(),a+" "+b+" "+c+" "+d,Toast.LENGTH_SHORT).show();
                 }
             }
         });
