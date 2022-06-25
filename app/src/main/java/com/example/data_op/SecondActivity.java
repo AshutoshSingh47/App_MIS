@@ -15,11 +15,12 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class SecondActivity extends AppCompatActivity {
-    String callstarttime;
-    TextView textView;
+    String callstarttime,status;
+    TextView textView,textView1;
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString("time",callstarttime);
+        outState.putString("status",status);
         super.onSaveInstanceState(outState);
     }
 
@@ -27,7 +28,9 @@ public class SecondActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         callstarttime=savedInstanceState.getString("time");
         textView=(TextView)findViewById(R.id.clock);
+        textView1=(TextView)findViewById(R.id.status);
         textView.setText(callstarttime);
+        textView1.setText(status);
         super.onRestoreInstanceState(savedInstanceState);
     }
 
@@ -46,6 +49,7 @@ public class SecondActivity extends AppCompatActivity {
                 callstarttime = sdf.format(Calendar.getInstance().getTime());
                 textView.setText(callstarttime);
                 textView1.setText("STOP");
+                status="STOP";
             }
         });
         findViewById(R.id.continuous).setOnClickListener(new View.OnClickListener() {
@@ -56,6 +60,7 @@ public class SecondActivity extends AppCompatActivity {
                 callstarttime = sdf.format(Calendar.getInstance().getTime());
                 textView.setText(callstarttime);
                 textView1.setText("CONTINUE");
+                status="CONTINUE";
             }
         });
         findViewById(R.id.finish).setOnClickListener(new View.OnClickListener() {
@@ -66,6 +71,7 @@ public class SecondActivity extends AppCompatActivity {
                 callstarttime = sdf.format(Calendar.getInstance().getTime());
                 textView.setText(callstarttime);
                 textView1.setText("FINISH");
+                status="FINISH";
             }
         });
 
