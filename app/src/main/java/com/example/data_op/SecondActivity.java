@@ -16,7 +16,7 @@ import java.util.Locale;
 
 public class SecondActivity extends AppCompatActivity {
     String callstarttime,status;
-    TextView textView,textView1;
+    TextView textView,timetext;
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -28,10 +28,11 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         callstarttime=savedInstanceState.getString("time");
+        status=savedInstanceState.getString("status");
         textView=(TextView)findViewById(R.id.clock);
-        textView1=(TextView)findViewById(R.id.status);
+        timetext=(TextView)findViewById(R.id.status);
         textView.setText(callstarttime);
-        textView1.setText(status);
+        timetext.setText(status);
         super.onRestoreInstanceState(savedInstanceState);
     }
 
@@ -49,8 +50,9 @@ public class SecondActivity extends AppCompatActivity {
                 SimpleDateFormat sdf =new SimpleDateFormat(format, Locale.US);
                 callstarttime = sdf.format(Calendar.getInstance().getTime());
                 textView.setText(callstarttime);
-                textView1.setText("STOP");
                 status="STOP";
+                textView1.setText(status);
+
             }
         });
         findViewById(R.id.continuous).setOnClickListener(new View.OnClickListener() {
@@ -60,8 +62,9 @@ public class SecondActivity extends AppCompatActivity {
                 SimpleDateFormat sdf =new SimpleDateFormat(format, Locale.US);
                 callstarttime = sdf.format(Calendar.getInstance().getTime());
                 textView.setText(callstarttime);
-                textView1.setText("CONTINUE");
                 status="CONTINUE";
+                textView1.setText(status);
+
             }
         });
         findViewById(R.id.finish).setOnClickListener(new View.OnClickListener() {
@@ -71,24 +74,11 @@ public class SecondActivity extends AppCompatActivity {
                 SimpleDateFormat sdf =new SimpleDateFormat(format, Locale.US);
                 callstarttime = sdf.format(Calendar.getInstance().getTime());
                 textView.setText(callstarttime);
-                textView1.setText("FINISH");
                 status="FINISH";
+                textView1.setText(status);
+
             }
         });
-
-//        @Override
-//                public void onSavedInstanceState(@NonNull Bundle outstate)
-//        {
-//            outstate.putString("time",callstarttime);
-//            super.onSaveInstanceState(outstate);
-//        }
-//        @Override
-//                public void onRestoreInstanceState(@NonNull Bundle outstate)
-//        {
-//            callstarttime=savedInstanceState.getString("time");
-//            super.onRestoreInstanceState(savedInstanceState);
-//
-//        }
 
     }
 

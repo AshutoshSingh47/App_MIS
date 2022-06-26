@@ -30,6 +30,25 @@ public class MainActivity extends AppCompatActivity {
     EditText text,text2,text3;
     String[] language ={"as","bs","cs","ds","es","fs","gs","hs","is","js","ks","ls","ms","ns","os","ps","qs"};
     String a,b,c,d;
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString("id",a);
+        outState.putString("part_name",b);
+        outState.putString("machine",c);
+        outState.putString("tool_in_charge",d);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        a=savedInstanceState.getString("id");
+        b=savedInstanceState.getString("part_name");
+        c=savedInstanceState.getString("machine");
+        d=savedInstanceState.getString("tool_in_charge");
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,50 +74,51 @@ public class MainActivity extends AppCompatActivity {
 //////                myRef.setValue(obj);
 ////            }
 ////        });
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this,android.R.layout.select_dialog_item,language);
-        AutoCompleteTextView actv =  (AutoCompleteTextView)findViewById(R.id.autoCompletetextView1);
-        actv.setThreshold(1);
-        actv.setAdapter(adapter);
-        actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                a=(String)adapter.getItem(i);
-            }
-        });
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>
-                (this,android.R.layout.select_dialog_item,language);
-        AutoCompleteTextView actv2 =  (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView2);
-        actv2.setThreshold(1);
-        actv2.setAdapter(adapter2);
-        actv2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                b=(String)adapter2.getItem(i);
-            }
-        });
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>
-                (this,android.R.layout.select_dialog_item,language);
-        AutoCompleteTextView actv3 =  (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView3);
-        actv3.setThreshold(1);
-        actv3.setAdapter(adapter3);
-        actv3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                c=(String)adapter3.getItem(i);
-            }
-        });
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>
-                (this,android.R.layout.select_dialog_item,language);
-        AutoCompleteTextView actv4 =  (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView4);
-        actv4.setThreshold(1);
-        actv4.setAdapter(adapter4);
-        actv4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                d=(String)adapter4.getItem(i);
-            }
-        });
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                    (this, android.R.layout.select_dialog_item, language);
+            AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompletetextView1);
+            actv.setThreshold(1);
+            actv.setAdapter(adapter);
+            actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    a = (String) adapter.getItem(i);
+                }
+            });
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>
+                    (this, android.R.layout.select_dialog_item, language);
+            AutoCompleteTextView actv2 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
+            actv2.setThreshold(1);
+            actv2.setAdapter(adapter2);
+            actv2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    b = (String) adapter2.getItem(i);
+                }
+            });
+            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>
+                    (this, android.R.layout.select_dialog_item, language);
+            AutoCompleteTextView actv3 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView3);
+            actv3.setThreshold(1);
+            actv3.setAdapter(adapter3);
+            actv3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    c = (String) adapter3.getItem(i);
+                }
+            });
+            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>
+                    (this, android.R.layout.select_dialog_item, language);
+            AutoCompleteTextView actv4 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView4);
+            actv4.setThreshold(1);
+            actv4.setAdapter(adapter4);
+            actv4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    d = (String) adapter4.getItem(i);
+                }
+            });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
