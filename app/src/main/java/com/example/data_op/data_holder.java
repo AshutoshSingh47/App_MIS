@@ -1,4 +1,5 @@
 package com.example.data_op;
+/** Activity for future use in database.*/
 
 public class data_holder {
     String Id,Incharge,Part_Name;
