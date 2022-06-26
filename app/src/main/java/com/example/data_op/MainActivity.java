@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     String[] language ={"as","bs","cs","ds","es","fs","gs","hs","is","js","ks","ls","ms","ns","os","ps","qs"};
     String a,b,c,d;
 
-    @Override
+    /*@Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString("id",a);
         outState.putString("part_name",b);
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         d=savedInstanceState.getString("tool_in_charge");
         super.onRestoreInstanceState(savedInstanceState);
     }
+    This part has been commented for future use of orientation mode to restore activity items.*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,25 +56,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         button=(Button)findViewById(R.id.start);
 
-////        findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
-////            private String path_id;
-////
-////            @Override
-////            public void onClick(View view) {
-////
-////                text=(EditText)findViewById(R.id.Id);
-////                text2=(EditText)findViewById(R.id.Incharge);
-////                text3=(EditText)findViewById(R.id.Part_Name);
-////                String Id=text.getText().toString();
-////                this.path_id=Id;
-////                String Incharge=text2.getText().toString();
-////                String Part_Name=text3.getText().toString();
-////                data_holder obj=new data_holder(Incharge,Part_Name);
-////                FirebaseDatabase database = FirebaseDatabase.getInstance();
-////                DatabaseReference myRef = database.getReference(Id);
-//////                myRef.setValue(obj);
-////            }
-////        });
+        /*findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
+            private String path_id;
+
+            @Override
+            public void onClick(View view) {
+
+                text=(EditText)findViewById(R.id.Id);
+                text2=(EditText)findViewById(R.id.Incharge);
+                text3=(EditText)findViewById(R.id.Part_Name);
+                String Id=text.getText().toString();
+                this.path_id=Id;
+                String Incharge=text2.getText().toString();
+                String Part_Name=text3.getText().toString();
+                data_holder obj=new data_holder(Incharge,Part_Name);
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference(Id);
+//                myRef.setValue(obj);
+            }
+        });
+        This part has been commented for future use of CRUD functionality in database.*/
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>
                     (this, android.R.layout.select_dialog_item, language);
@@ -130,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Intent intent=new Intent(getApplicationContext(),SecondActivity.class);
                     startActivity(intent);
-//                    Toast.makeText(getApplicationContext(),a+" "+b+" "+c+" "+d,Toast.LENGTH_SHORT).show();
                 }
             }
         });
