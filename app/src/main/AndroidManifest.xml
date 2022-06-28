@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Data_op">
-        <activity android:name=".SecondActivity">
+        <activity android:name=".SecondActivity"
+            android:exported="true"
+            android:noHistory="true"
+            android:alwaysRetainTaskState="true">
         </activity>
         <activity
             android:name=".MainActivity"

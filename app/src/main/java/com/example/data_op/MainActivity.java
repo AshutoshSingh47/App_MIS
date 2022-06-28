@@ -1,9 +1,11 @@
 package com.example.data_op;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     //EditText text,text2,text3;
     String[] language ={"as","bs","cs","ds","es","fs","gs","hs","is","js","ks","ls","ms","ns","os","ps","qs"};
     String a,b,c,d;
+    protected int backbackexit=1;
 
     /*@Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -50,11 +53,12 @@ public class MainActivity extends AppCompatActivity {
     }
     This part has been commented for future use of orientation mode to restore activity items.*/
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        button=(Button)findViewById(R.id.start);
+        button = (Button) findViewById(R.id.start);
 
         /*findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
             private String path_id;
@@ -77,69 +81,87 @@ public class MainActivity extends AppCompatActivity {
         });
         This part has been commented for future use of CRUD functionality in database.*/
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                    (this, android.R.layout.select_dialog_item, language);
-            AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompletetextView1);
-            actv.setThreshold(1);
-            actv.setAdapter(adapter);
-            actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    a = (String) adapter.getItem(i);
-                }
-            });
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>
-                    (this, android.R.layout.select_dialog_item, language);
-            AutoCompleteTextView actv2 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
-            actv2.setThreshold(1);
-            actv2.setAdapter(adapter2);
-            actv2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    b = (String) adapter2.getItem(i);
-                }
-            });
-            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>
-                    (this, android.R.layout.select_dialog_item, language);
-            AutoCompleteTextView actv3 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView3);
-            actv3.setThreshold(1);
-            actv3.setAdapter(adapter3);
-            actv3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    c = (String) adapter3.getItem(i);
-                }
-            });
-            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>
-                    (this, android.R.layout.select_dialog_item, language);
-            AutoCompleteTextView actv4 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView4);
-            actv4.setThreshold(1);
-            actv4.setAdapter(adapter4);
-            actv4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    d = (String) adapter4.getItem(i);
-                }
-            });
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this, android.R.layout.select_dialog_item, language);
+        AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompletetextView1);
+        actv.setThreshold(1);
+        actv.setAdapter(adapter);
+        actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                a = (String) adapter.getItem(i);
+            }
+        });
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>
+                (this, android.R.layout.select_dialog_item, language);
+        AutoCompleteTextView actv2 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
+        actv2.setThreshold(1);
+        actv2.setAdapter(adapter2);
+        actv2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                b = (String) adapter2.getItem(i);
+            }
+        });
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>
+                (this, android.R.layout.select_dialog_item, language);
+        AutoCompleteTextView actv3 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView3);
+        actv3.setThreshold(1);
+        actv3.setAdapter(adapter3);
+        actv3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                c = (String) adapter3.getItem(i);
+            }
+        });
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>
+                (this, android.R.layout.select_dialog_item, language);
+        AutoCompleteTextView actv4 = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView4);
+        actv4.setThreshold(1);
+        actv4.setAdapter(adapter4);
+        actv4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                d = (String) adapter4.getItem(i);
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(a)||TextUtils.isEmpty(b)||TextUtils.isEmpty(c)||TextUtils.isEmpty(d))
-                {
+                if (TextUtils.isEmpty(a) || TextUtils.isEmpty(b) || TextUtils.isEmpty(c) || TextUtils.isEmpty(d)) {
                     Toast.makeText(MainActivity.this, "INVALID", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Intent intent=new Intent(getApplicationContext(),SecondActivity.class);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
                     startActivity(intent);
-                    data_holder obj=new data_holder(b,c,d);
+                    data_holder obj = new data_holder(b, c, d);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(a);
                     myRef.setValue(obj);
                 }
             }
         });
-
-
     }
+//@Override
+//public void onBackPressed() {
+//    if (backbackexit >= 1) {
+//        androidx.appcompat.app.AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+//                MainActivity.this);
+//        alertDialog.setTitle(getResources().getString(R.string.app_name));
+//
+//        // Setting Dialog Message
+//        alertDialog.setMessage("Are you sure you want to exit??");
+//        alertDialog.setPositiveButton("YES",
+//                (dialog, which) -> finish());
+//        // Setting Positive Yes Button
+//        alertDialog.setNeutralButton("NO",
+//                (dialog, which) -> {
+//                });
+//        // Showing Alert Message
+//        alertDialog.show();
+//        //super.onBackPressed();
+//    } else {
+//        backbackexit++;
+//        Toast.makeText(getBaseContext(), "Press again to Exit", Toast.LENGTH_SHORT).show();
+//    }
+//}
 }
