@@ -27,7 +27,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     Button button;
-    EditText text,text2,text3;
+    //EditText text,text2,text3;
     String[] language ={"as","bs","cs","ds","es","fs","gs","hs","is","js","ks","ls","ms","ns","os","ps","qs"};
     String a,b,c,d;
 
@@ -132,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Intent intent=new Intent(getApplicationContext(),SecondActivity.class);
                     startActivity(intent);
+                    data_holder obj=new data_holder(b,c,d);
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference(a);
+                    myRef.setValue(obj);
                 }
             }
         });
