@@ -1,6 +1,7 @@
 package com.example.data_op;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -84,28 +86,7 @@ public class SecondActivity extends AppCompatActivity {
         });
 
     }
-//    @Override
-//    public void onBackPressed() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(SecondActivity.this);
-//        builder.setTitle(R.string.app_name);
-//        builder.setIcon(R.mipmap.ic_launcher);
-//        builder.setMessage("Do you want to exit?")
-//                .setCancelable(false)
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        finish();
-//                    }
-//                })
-//                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        dialog.cancel();
-//                    }
-//                });
-//        AlertDialog alert = builder.create();
-//        alert.show();
-//        finish();
-//        super.onBackPressed();
-//    }
+
 @Override
 public void onBackPressed() {
     if (backbackexit >= 1) {
@@ -116,7 +97,7 @@ public void onBackPressed() {
         // Setting Dialog Message
         alertDialog.setMessage("Are you sure you want to exit??");
         alertDialog.setPositiveButton("YES",
-                (dialog, which) -> finish());
+                (dialog, which) -> ActivityCompat.finishAffinity(SecondActivity.this));
         // Setting Positive Yes Button
         alertDialog.setNeutralButton("NO",
                 (dialog, which) -> {
@@ -130,4 +111,15 @@ public void onBackPressed() {
     }
 }
 
+//    @Override
+//    public void onBackPressed() {
+//
+//        super.onBackPressed();
+//    }
+
+//    @Override
+//    protected void onDestroy() {
+//        finish();
+//        super.onDestroy();
+//    }
 }
