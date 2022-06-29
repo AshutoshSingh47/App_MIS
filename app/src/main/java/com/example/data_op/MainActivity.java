@@ -141,27 +141,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-//@Override
-//public void onBackPressed() {
-//    if (backbackexit >= 1) {
-//        androidx.appcompat.app.AlertDialog.Builder alertDialog = new AlertDialog.Builder(
-//                MainActivity.this);
-//        alertDialog.setTitle(getResources().getString(R.string.app_name));
-//
-//        // Setting Dialog Message
-//        alertDialog.setMessage("Are you sure you want to exit??");
-//        alertDialog.setPositiveButton("YES",
-//                (dialog, which) -> finish());
-//        // Setting Positive Yes Button
-//        alertDialog.setNeutralButton("NO",
-//                (dialog, which) -> {
-//                });
-//        // Showing Alert Message
-//        alertDialog.show();
-//        //super.onBackPressed();
-//    } else {
-//        backbackexit++;
-//        Toast.makeText(getBaseContext(), "Press again to Exit", Toast.LENGTH_SHORT).show();
-//    }
-//}
 }
