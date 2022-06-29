@@ -37,29 +37,4 @@ public class data_holder {
         this.Tool_In_charge = Tool_In_charge;
 
     }
-
-
-//    public String getId() {
-//        return Id;
-//    }
-//
-//    public void setId(String Id) {
-//        this.Id = Id;
-//    }
-
-//    public String getIncharge() {
-//        return Incharge;
-//    }
-//
-//    public void setIncharge(String Incharge) {
-//        this.Incharge = Incharge;
-//    }
-//
-//    public String getPart_name() {
-//        return Part_Name;
-//    }
-//
-//    public void setPart_name(String Part_Name) {
-//        this.Part_Name = Part_Name;
-//    }
 }
