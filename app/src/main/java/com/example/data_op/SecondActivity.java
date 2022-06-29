@@ -18,7 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity
+{
     String callstarttime,status;
     TextView textView,timetext;
     protected static int backbackexit=1;
@@ -86,40 +87,26 @@ public class SecondActivity extends AppCompatActivity {
         });
 
     }
-
-@Override
-public void onBackPressed() {
-    if (backbackexit >= 1) {
-        androidx.appcompat.app.AlertDialog.Builder alertDialog = new AlertDialog.Builder(
-                SecondActivity.this);
-        alertDialog.setTitle(getResources().getString(R.string.app_name));
-
-        // Setting Dialog Message
-        alertDialog.setMessage("Are you sure you want to exit??");
-        alertDialog.setPositiveButton("YES",
-                (dialog, which) -> ActivityCompat.finishAffinity(SecondActivity.this));
-        // Setting Positive Yes Button
-        alertDialog.setNeutralButton("NO",
-                (dialog, which) -> {
-                });
-        // Showing Alert Message
-        alertDialog.show();
-        //super.onBackPressed();
-    } else {
-        backbackexit++;
-        Toast.makeText(getBaseContext(), "Press again to Exit", Toast.LENGTH_SHORT).show();
+    @Override
+    public void onBackPressed()
+    {
+        if (backbackexit >= 1)
+        {
+            androidx.appcompat.app.AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                    SecondActivity.this);
+            alertDialog.setTitle(getResources().getString(R.string.app_name));
+            alertDialog.setMessage("Are you sure you want to exit??");
+            alertDialog.setPositiveButton("YES",
+                    (dialog, which) -> ActivityCompat.finishAffinity(SecondActivity.this));
+            alertDialog.setNeutralButton("NO",
+                    (dialog, which) -> {
+                    });
+            alertDialog.show();
+        }
+        else
+        {
+            backbackexit++;
+            Toast.makeText(getBaseContext(), "Press again to Exit", Toast.LENGTH_SHORT).show();
+        }
     }
-}
-
-//    @Override
-//    public void onBackPressed() {
-//
-//        super.onBackPressed();
-//    }
-
-//    @Override
-//    protected void onDestroy() {
-//        finish();
-//        super.onDestroy();
-//    }
 }
