@@ -1,5 +1,5 @@
 package com.example.data_op;
-/** Activity for future use in database.*/
+/** Activity for use in database.*/
 
 public class data_holder {
     String Machine_Name;
