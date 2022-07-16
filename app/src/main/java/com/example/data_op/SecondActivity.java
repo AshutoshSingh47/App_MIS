@@ -23,7 +23,7 @@ public class SecondActivity extends AppCompatActivity
     String callstarttime,status;
     TextView textView,timetext;
     protected static int backbackexit=1;
-
+    SharedPreferences sp;
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString("time",callstarttime);
@@ -49,6 +49,7 @@ public class SecondActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         textView=(TextView)findViewById(R.id.clock);
         textView1=(TextView)findViewById(R.id.status);
+        sp=getSharedPreferences("logged",MODE_PRIVATE);
         findViewById(R.id.stop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +71,6 @@ public class SecondActivity extends AppCompatActivity
                 textView.setText(callstarttime);
                 status="CONTINUE";
                 textView1.setText(status);
-
             }
         });
         findViewById(R.id.finish).setOnClickListener(new View.OnClickListener() {
@@ -82,6 +82,7 @@ public class SecondActivity extends AppCompatActivity
                 textView.setText(callstarttime);
                 status="FINISH";
                 textView1.setText(status);
+                sp.edit().putBoolean("logged",false).apply();
 
             }
         });

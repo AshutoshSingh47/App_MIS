@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     String[] language ={"as","bs","cs","ds","es","fs","gs","hs","is","js","ks","ls","ms","ns","os","ps","qs"};
     String a,b,c,d;
-
+    SharedPreferences sp;
     /*@Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString("id",a);
@@ -57,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         button = (Button) findViewById(R.id.start);
+        sp=getSharedPreferences("logged",MODE_PRIVATE);
+        if(sp.getBoolean("logged",false)){
+            openNewActivity();
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this, android.R.layout.select_dialog_item, language);
         AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompletetextView1);
@@ -107,14 +112,20 @@ public class MainActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(a) || TextUtils.isEmpty(b) || TextUtils.isEmpty(c) || TextUtils.isEmpty(d)) {
                     Toast.makeText(MainActivity.this, "INVALID", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
-                    startActivity(intent);
                     data_holder obj = new data_holder(b, c, d);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(a);
                     myRef.setValue(obj);
+                    openNewActivity();
+                    sp.edit().putBoolean("logged",true).apply();
                 }
             }
         });
+    }
+
+    private void openNewActivity() {
+        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+        startActivity(intent);
+
     }
 }
