@@ -82,7 +82,7 @@ public class SecondActivity extends AppCompatActivity
                 textView.setText(callstarttime);
                 status="FINISH";
                 textView1.setText(status);
-                sp.edit().putBoolean("logged",false).apply();
+                //sp.edit().putBoolean("logged",false).apply();
 
             }
         });

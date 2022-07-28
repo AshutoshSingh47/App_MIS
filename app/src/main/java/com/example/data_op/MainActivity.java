@@ -19,8 +19,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 
 import java.text.SimpleDateFormat;
@@ -31,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     Button button;
     String[] language ={"as","bs","cs","ds","es","fs","gs","hs","is","js","ks","ls","ms","ns","os","ps","qs"};
-    String a,b,c,d;
-    SharedPreferences sp;
+    String a,b,c,d,uid;
+    SharedPreferences sp,sp2;
+    long maxid,ref;
     /*@Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString("id",a);
@@ -59,9 +65,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         button = (Button) findViewById(R.id.start);
         sp=getSharedPreferences("logged",MODE_PRIVATE);
-        if(sp.getBoolean("logged",false)){
-            openNewActivity();
-        }
+        sp2=getSharedPreferences("autoincrement",MODE_PRIVATE);
+        sp2.getLong("increment",maxid);
+        SharedPreferences.Editor edit= sp2.edit();
+//        if(sp.getBoolean("logged",false)){
+//            openNewActivity();
+//        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this, android.R.layout.select_dialog_item, language);
         AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompletetextView1);
@@ -112,11 +121,27 @@ public class MainActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(a) || TextUtils.isEmpty(b) || TextUtils.isEmpty(c) || TextUtils.isEmpty(d)) {
                     Toast.makeText(MainActivity.this, "INVALID", Toast.LENGTH_SHORT).show();
                 } else {
-                    data_holder obj = new data_holder(b, c, d);
+                    data_holder obj = new data_holder(a,b, c, d);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference(a);
-                    myRef.setValue(obj);
-                    openNewActivity();
+                    DatabaseReference myRef = database.getReference();
+                    myRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists())
+                                maxid=snapshot.getChildrenCount();
+                            edit.putLong("increment",maxid);
+                            edit.commit();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    ref=sp2.getLong("increment",maxid);
+                    myRef.child(String.valueOf(ref+1)).setValue(obj);
+                    //openNewActivity();
+                   Toast.makeText(getApplicationContext(),"Key : "+uid,Toast.LENGTH_SHORT).show();
                     sp.edit().putBoolean("logged",true).apply();
                 }
             }
