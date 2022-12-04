@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     data_holder obj = new data_holder(a,b, c, d);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference();
+                    DatabaseReference myRef = database.getReference("");
                     myRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
